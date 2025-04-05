@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --header-height: 3.125rem;
+  --header-top: 0rem;
+
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 12%);
+  --color-border: hsl(0 0% 88%);
+  --color-input: hsl(0 0% 88%);
+  --color-ring: hsl(0 0% 83%);
+
+  --color-card: hsl(0 0% 98%);
+  --color-card-foreground: hsl(0 0% 12%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(0 0% 3.9%);
+
+  --color-primary: hsl(15 63% 40%);
+  --color-primary-foreground: hsl(0 0% 98%);
+
+  --color-secondary: hsl(0 0% 96%);
+  --color-secondary-foreground: hsl(0 0% 30%);
+
+  --color-muted: hsl(0 0% 96%);
+  --color-muted-foreground: hsl(0 0% 45.1%);
+
+  --color-accent: hsl(0 0% 96%);
+  --color-accent-foreground: hsl(0 0% 9%);
+
+  --color-destructive: hsl(3 71% 52%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+
+  --color-chart-1: hsl(12 76% 61%);
+  --color-chart-2: hsl(173 58% 39%);
+  --color-chart-3: hsl(197 37% 24%);
+  --color-chart-4: hsl(43 74% 66%);
+  --color-chart-5: hsl(27 87% 67%);
+
+  --tracking-micro: -0.0125em;
+
+  --text-5xl: 2.75rem;
+
+  --scale-flip: -1;
+
+  --grid-template-columns-2xs: repeat(auto-fill, minmax(10rem, 1fr));
+  --grid-template-columns-xs: repeat(auto-fill, minmax(12rem, 1fr));
+  --grid-template-columns-sm: repeat(auto-fill, minmax(14rem, 1fr));
+  --grid-template-columns-md: repeat(auto-fill, minmax(16rem, 1fr));
+  --grid-template-columns-lg: repeat(auto-fill, minmax(18rem, 1fr));
+  --grid-template-columns-xl: repeat(auto-fill, minmax(20rem, 1fr));
+
+  --animate-fade-in: fade-in 0.3s ease-in-out;
+  --animate-ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply border-border;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: hsl(0 0% 8%);
+      --color-foreground: hsl(0 0% 90%);
+      --color-border: hsl(0 0% 18%);
+      --color-input: hsl(0 0% 18%);
+      --color-ring: hsl(0 0% 23%);
+
+      --color-card: hsl(0 0% 11%);
+      --color-card-foreground: hsl(0 0% 90%);
+
+      --color-popover: hsl(0 0% 8%);
+      --color-popover-foreground: hsl(0 0% 90%);
+
+      --color-primary: hsl(15 63% 50%);
+      --color-primary-foreground: hsl(0 0% 98%);
+
+      --color-secondary: hsl(0 0% 13%);
+      --color-secondary-foreground: hsl(0 0% 70%);
+
+      --color-muted: hsl(0 0% 13%);
+      --color-muted-foreground: hsl(0 0% 60%);
+
+      --color-accent: hsl(0 0% 13%);
+      --color-accent-foreground: hsl(0 0% 90%);
+
+      --color-destructive: hsl(0 62.8% 30.6%);
+      --color-destructive-foreground: hsl(0 0% 98%);
+
+      --color-chart-1: hsl(220 70% 50%);
+      --color-chart-2: hsl(160 60% 45%);
+      --color-chart-3: hsl(30 80% 55%);
+      --color-chart-4: hsl(43 74% 66%);
+      --color-chart-5: hsl(340 75% 55%);
+    }
+  }
+
+  * {
+    @apply underline-offset-2;
+  }
+
+  a,
+  button,
+  label[for],
+  [href] [class*="group-hover"] {
+    @apply ease-out;
+    @apply duration-100;
+    @apply cursor-pointer;
+  }
+
+  strong {
+    @apply font-medium;
+  }
+
+  svg.lucide:not([class*="stroke"]),
+  svg.brand:not([class*="stroke"]) {
+    @apply stroke-2;
+  }
+
+  svg.lucide:not([class*="size-"]):not([class*="h-"]),
+  svg.brand:not([class*="size-"]):not([class*="h-"]) {
+    @apply size-[1em];
+  }
+
+  [href] svg[class*="arrow-up-right"],
+  [href] svg[class*="arrow-right"],
+  [type] svg[class*="arrow-up-right"],
+  [type] svg[class*="arrow-right"] {
+    @apply will-change-transform;
+    @apply duration-150;
+  }
+
+  [href]:hover svg[class*="arrow-up-right"],
+  [type]:hover svg[class*="arrow-up-right"] {
+    @apply translate-x-[0.1em];
+    @apply rotate-12;
+  }
+
+  [href]:hover svg[class*="arrow-right"],
+  [type]:hover svg[class*="arrow-right"] {
+    @apply translate-x-[0.15em];
+  }
+}
+
+@utility prose {
+  & [id] {
+    @apply relative;
+  }
+
+  & [id] > a[tabindex="-1"] {
+    @apply opacity-0;
+    @apply absolute;
+    @apply right-full;
+    @apply no-underline;
+    @apply p-2;
+    @apply -m-2;
+    @apply mr-0;
+  }
+
+  & [id] > a[tabindex="-1"]:after {
+    @apply content-["#"];
+  }
+
+  & [id]:hover > a[tabindex="-1"] {
+    @apply opacity-25;
+  }
+
+  & [id]:hover > a[tabindex="-1"]:hover {
+    @apply opacity-100;
+  }
+}
