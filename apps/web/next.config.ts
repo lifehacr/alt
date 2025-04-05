@@ -29,10 +29,6 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  async rewrites() {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-    const posthogUrl = process.env.NEXT_PUBLIC_POSTHOG_HOST
-
     return [
       // RSS rewrites
       {
