@@ -29,7 +29,6 @@ const nextConfig: NextConfig = {
     ],
   },
 
-    return [
       // RSS rewrites
       {
         source: "/rss.xml",
